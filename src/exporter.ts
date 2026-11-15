@@ -5,7 +5,8 @@ import { Scene } from "./render/Scene";
 import { loadDoc, useStore, zoomToFit } from "./store";
 import type { Doc, El, Step } from "./types";
 
-const FILE_TAG = "dsa-tracer";
+const FILE_TAG = "dryrun";
+const LEGACY_FILE_TAGS = ["dsa-tracer"]; // files saved before the rename still open
 
 function download(url: string, name: string) {
   const a = document.createElement("a");
@@ -22,7 +23,7 @@ const slug = () => new Date().toISOString().slice(0, 16).replace(/[:T]/g, "-");
 export function saveFile() {
   const { doc } = useStore.getState();
   const blob = new Blob([JSON.stringify({ type: FILE_TAG, version: 1, doc }, null, 2)], { type: "application/json" });
-  download(URL.createObjectURL(blob), `trace-${slug()}.dsatrace.json`);
+  download(URL.createObjectURL(blob), `trace-${slug()}.dryrun.json`);
 }
 
 export function openFile() {
@@ -34,7 +35,7 @@ export function openFile() {
     if (!file) return;
     try {
       const data = JSON.parse(await file.text());
-      const doc: Doc | undefined = data?.type === FILE_TAG ? data.doc : undefined;
+      const doc: Doc | undefined = [FILE_TAG, ...LEGACY_FILE_TAGS].includes(data?.type) ? data.doc : undefined;
       if (!doc?.steps?.length) throw new Error("not a trace file");
       loadDoc({ ...doc, current: 0 });
       requestAnimationFrame(() => zoomToFit());

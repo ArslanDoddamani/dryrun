@@ -1,5 +1,5 @@
 {
-  "name": "dsa-tracer",
+  "name": "dryrun",
   "private": true,
   "version": "0.1.0",
   "description": "Excalidraw-style whiteboard for explaining and tracing DSA solutions in interviews",

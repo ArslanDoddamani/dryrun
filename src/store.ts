@@ -319,11 +319,12 @@ export function setTool(tool: Tool) {
 
 // ---------- persistence ----------
 
-const STORAGE_KEY = "dsa-tracer:v1";
+const STORAGE_KEY = "dryrun:v1";
+const LEGACY_STORAGE_KEY = "dsa-tracer:v1"; // boards autosaved before the rename are picked up once
 
 export function loadSaved(): boolean {
   try {
-    const raw = localStorage.getItem(STORAGE_KEY);
+    const raw = localStorage.getItem(STORAGE_KEY) ?? localStorage.getItem(LEGACY_STORAGE_KEY);
     if (!raw) return false;
     const data = JSON.parse(raw);
     if (!data?.doc?.steps?.length) return false;
