@@ -328,6 +328,25 @@ kbd {
   z-index: 10;
 }
 
+.top-right a.icon-btn {
+  color: var(--ink);
+}
+
+.credit {
+  position: fixed;
+  right: 12px;
+  bottom: 3px;
+  font-size: 10.5px;
+  color: var(--faint);
+  text-decoration: none;
+  letter-spacing: 0.02em;
+  z-index: 11;
+}
+
+.credit:hover {
+  color: var(--accent);
+}
+
 .top-right .primary-btn {
   height: 40px;
   box-shadow: var(--shadow);
@@ -923,6 +942,7 @@ kbd {
   .timeline {
     left: auto;
     right: 14px;
+    bottom: 20px;
     transform: none;
     width: calc(100vw - 330px);
   }

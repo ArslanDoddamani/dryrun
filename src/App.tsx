@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { Canvas } from "./components/Canvas";
-import { HelpDialog, MainMenu, PresentOverlay, TopRight, Welcome, ZoomControls } from "./components/Chrome";
+import { Credit, HelpDialog, MainMenu, PresentOverlay, TopRight, Welcome, ZoomControls } from "./components/Chrome";
 import { InsertDialog } from "./components/InsertDialog";
 import { PropertiesPanel } from "./components/PropertiesPanel";
 import { TextEditor } from "./components/TextEditor";
@@ -38,6 +38,7 @@ export default function App() {
         </>
       )}
       {notice && <div className="notice">{notice}</div>}
+      <Credit />
       <InsertDialog />
       <HelpDialog />
     </div>
